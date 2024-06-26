@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+    <link rel="stylesheet" href="../output.css">
+    <link rel="icon" type="image/x-icon" href="../Assets/Logo.png">
+
+    <!-- Font awesome Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <!-- Alert notfy -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Required js  -->
+    <script defer src="../Components/Navbar.js"></script>
+    <script src="../index.js"></script>
+    <script defer src="./Product.js"></script>
+    <script defer src="./PlaceOrder.js"></script>
+    
+</head>
+<body class="body_css pt-20 sm:pt-0">
+
+    <div id="productinfo" class="flex items-center min-h-screen flex-col lg:flex-row">
+        <div class="image h-1/2 w-full lg:w-1/2 lg:h-full p-0 md:p-10 lg:p-14 flex items-center justify-center">
+            <img id="productImg" class="w-auto h-full lg:w-full lg:h-auto rounded-md" src="../Assets/Product.jpg" alt="image">
+        </div>
+        <form action="/" id="productDetail" class="h-1/2 w-full lg:w-1/2 lg:h-full flex justify-center flex-col">
+            <h1 class="text-xl md:text-2xl lg:text-3xl lg:mb-2">Boat Boomset</h1>
+            <span class="hidden" id="productId">NO Id loaded</span>
+            <h2 class="text-sm md:text-md lg:text-lg text-white w-fit px-2 py-1 my-1 lg:my-2 rounded-md bg-red-800">Limited time deal</h2>
+            <h2 class="text-sm md:text-md lg:text-lg text-green-500 mb-2"><b class="text-lg">$200</b> <s class="text-red-800 opacity-50 text-sm">$420</s></h2>
+            <p id="desc" class="text-sm md:text-md lg:text-lg opacity-50 mb-1 md:mb-2 lg:mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam tempore ad aspernatur.</p>
+            <p id="return" class="text-sm md:text-md lg:text-lg text-secondary">Returnable upto 7 Days <span class="text-green-900 font-bold">(14 days exclusive for prime)</span></p>
+            <button type="submit" class="flex self-start mt-5 rounded-sm px-5 py-2 shadow-sm shadow-secondary bg-secondary text-tertiary">Place Order</button>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+</body>
+</html>

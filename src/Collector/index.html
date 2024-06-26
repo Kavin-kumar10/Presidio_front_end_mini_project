@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collector</title>
+    <link rel="stylesheet" href="../output.css">
+    <link rel="icon" type="image/x-icon" href="../Assets/Logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../index.js"></script>
+    <script src="./index.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+
+</head>
+<body class="p-4 md:p-6 lg:p-8 bg-primary">
+    <nav class="flex justify-between items-center h-20 mb-10">
+        <img class="w-10 h-auto" src="../Assets/Logo.png" alt="Logo">
+            <div class="relative cursor-pointer">
+                <li id="Account" class="info text-primary border-2  bg-secondary rounded-md border-secondary px-4 py-2 hover:opacity-70 opacity-100 text-lg">
+                    Kavin Kumar M
+                </li>
+                <div id="dropdown" class="hidden flex-col shadow-sm shadow-secondary rounded-md absolute w-[200px] top-8 md:top-14 right-0 bg-primary px-2 py-2">
+                    <div class=" flex flex-col rounded-md p-1 mb-2 md:mb-4 text-secondary ">
+                        <p class="opacity-50 text-sm">Signed in as</p>
+                        <h1>Kavin Kumar M</h1>
+                        <h2 class="opacity-50 text-green-950 text-xs">Prime</h2>
+                    </div>
+                    <button class="bg-secondary rounded-md text-primary text-md py-2 border-2 border-secondary hover:bg-primary hover:text-secondary hover:duration-200" >Sign Out</button>
+                </div>
+                <!-- <li  class="info text-secondary cursor-pointer opacity-70 hover:opacity-100 text-sm  block md:hidden">
+                    <i class="fa-solid fa-user"></i>
+                </li> -->
+            </div>
+    </nav>
+    <div class="flex flex-col-reverse sm:flex-row">
+        <!-- <button class="px-4 py-2 text-tertiary bg-secondary rounded-md">Pendings</button> -->
+        <input class="p-2 bg-transparent text-secondary border-2 border-secondary rounded-md outline-none w-40 lg:w-64" placeholder="Search ..." type="text">
+    </div>
+    <div id="Pendings_parent" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-10 gap-5">
+        <div id="Pendings_template" class="Card shadow-sm shadow-secondary p-3 rounded-md">
+            <img class="w-full h-auto rounded-md mb-3" src="../Assets/Product.jpg" alt="">
+            <div class="">
+                <div class="p-1 my-3 w-2/5 rounded-lg bg-tertiary text-secondary flex items-center justify-center shadow-sm shadow-secondary">Initiated</div>
+                <h1 class="font-bold text-2xl text-secondary">Boat Boomset</h1>
+                <h2 class="opacity-50 font-bold text-secondary">Collect from Kavin kumar M</h2>
+                <p class="opacity-50 mb-5 font-bold text-secondary">Product price $250</p>
+                <span class="hidden">Id</span>
+                <div class="flex gap-5">
+                    <button class=" px-2 md:px-5 py-1 border-2 border-secondary bg-secondary text-tertiary rounded-md hover:bg-tertiary hover:text-secondary duration-500">Accept</button>
+                    <button class="px-2 md:px-5 py-1 border-2 border-secondary rounded-md text-secondary">Decline</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+</body>
+</html>
