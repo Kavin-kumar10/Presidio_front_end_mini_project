@@ -1,3 +1,4 @@
+var notyf = new Notyf();
 $(document).ready(function(){
     let storage = JSON.parse(localStorage.getItem('RefundApp'));
     let memberId = storage.memberID;
@@ -82,7 +83,7 @@ const handleReasonSubmit = async () =>{
         const result = await response.json();
         console.log(result);
         if(response.status != 200){
-            alert(result.errorMessage);
+            notyf.error(result.errorMessage);
         }
         handleHidePop();
     }

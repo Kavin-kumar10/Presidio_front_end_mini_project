@@ -1,4 +1,5 @@
 const handleRegister = async(e) =>{
+    var notyf = new Notyf();
     try{
         e.preventDefault();
         let form = document.getElementById('register');
@@ -17,6 +18,10 @@ const handleRegister = async(e) =>{
         };
         let response = await fetch('http://localhost:5018/api/User/Register',options)
         let result = await response.json();
+        notyf.success("Registeration Successfull !! Please wait for activation.")
+        setTimeout(()=>{
+            window.location.reload();
+        },1000)
         console.log(result);
     }
     catch(err){

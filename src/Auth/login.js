@@ -43,6 +43,12 @@ const handleLogin = async(e) =>{
             if(result.errorCode == 400){
                 notyf.error(result.errorMessage);
             }
+            if(result.errors.UserId){
+                notyf.error(result.errors.UserId[0]);
+            }
+            if(result.errors.Password){
+                notyf.error(result.errors.Password[0]);
+            }
         }
     }
     catch(err){

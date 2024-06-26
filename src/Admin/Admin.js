@@ -68,6 +68,7 @@ $(document).ready(function(){
     }
 
     const handlePaymentSubmission = async (orderId,refundId) =>{
+        let notyf = new Notyf();
         try{
             let transactionId = $("#Transaction").val();
             console.log(transactionId);
@@ -85,9 +86,14 @@ $(document).ready(function(){
                 body: JSON.stringify(data),
             })
             let result = await response.json();
+            notyf.success("Payment updation Successfull")
+            setTimeout(()=>{
+                window.location.reload()
+            },1000)
             console.log(result);
         }
         catch(err){
+            notyf.error("Payment updation Failed")
             console.log(err);
         }
         
