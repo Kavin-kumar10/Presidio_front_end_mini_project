@@ -1,5 +1,7 @@
-$(document).ready(function() {
-    fetch("../Components/Navbar.html")
+setTimeout(()=>{
+
+    $(document).ready(function() {
+        fetch("../Components/Navbar.html")
         .then(response => response.text())
         .then(data => {
             $("body").prepend(data);
@@ -17,33 +19,35 @@ $(document).ready(function() {
                     case 0:
                         dropdown.find("h2").text("User");
                         break;
-                    case 1:
-                        dropdown.find("h2").text("Collector");
-                        break;
-                    case 2:
-                        dropdown.find("h2").text("Admin");
-                        break;
+                        case 1:
+                            dropdown.find("h2").text("Collector");
+                            break;
+                            case 2:
+                                dropdown.find("h2").text("Admin");
+                                break;
+                                
+                                default:
+                                    break;
+                                }
+                            }
+
+                            // Dropdown for sign out
+                            info.click(() => {
+                                if(dropdown.css("display") == "flex")   
+                                    dropdown.css("display", "none");
+                                else if(dropdown.css("display") == "none")   
+                                    dropdown.css("display", "flex");
+                            });
+                            dropdown.find('button').click(()=>{
+                                localStorage.removeItem("RefundApp");
+                                localStorage.removeItem("User");
+                                window.location.href = "/src/Auth/Login.html";
+                            })
+                        })
+                        .catch(error => {
+                            console.error("Error fetching navbar:", error);
+                        });
+
+                    });
                     
-                    default:
-                        break;
-                }
-            }
-
-            // Dropdown for sign out
-            info.click(() => {
-                if(dropdown.css("display") == "flex")   
-                    dropdown.css("display", "none");
-                else if(dropdown.css("display") == "none")   
-                    dropdown.css("display", "flex");
-            });
-            dropdown.find('button').click(()=>{
-                localStorage.removeItem("RefundApp");
-                localStorage.removeItem("User");
-                window.location.href = "/src/Auth/Login.html";
-            })
-        })
-        .catch(error => {
-            console.error("Error fetching navbar:", error);
-        });
-
-});
+})

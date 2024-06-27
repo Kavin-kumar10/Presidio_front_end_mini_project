@@ -1,31 +1,33 @@
-$(document).ready(function(){
-    let templateDiv = $("#accepted")
-    let parentDiv = $("#parent")
-    let storage = JSON.parse(localStorage.getItem('RefundApp'));
-    let memberId = storage.memberID;
-    var elements;
+setTimeout(() => {
     
-    //Search bar
-    let searchInput = $('#SearchOrder');
-    searchInput.keyup(function() {
-        const searchTerm = $(this).val().toLowerCase();
-        console.log(searchTerm);
-        var filtered = elements.filter((elem) => {
-            return elem.orderId.toString().includes(searchTerm);
+    $(document).ready(function(){
+        let templateDiv = $("#accepted")
+        let parentDiv = $("#parent")
+        let storage = JSON.parse(localStorage.getItem('RefundApp'));
+        let memberId = storage.memberID;
+        var elements;
+        
+        //Search bar
+        let searchInput = $('#SearchOrder');
+        searchInput.keyup(function() {
+            const searchTerm = $(this).val().toLowerCase();
+            console.log(searchTerm);
+            var filtered = elements.filter((elem) => {
+                return elem.orderId.toString().includes(searchTerm);
+            });
+            console.log(filtered);
+            createComponents(filtered);
         });
-        console.log(filtered);
-        createComponents(filtered);
-    });
-
-
-    //#region Navbar controller
-
-    let dropdown = $('#dropdown');
-    let info = $('.info')
-    
-    // User Credentials
-    let Credentials = JSON.parse(localStorage.getItem("User"));
-    if(Credentials){
+        
+        
+        //#region Navbar controller
+        
+        let dropdown = $('#dropdown');
+        let info = $('.info')
+        
+        // User Credentials
+        let Credentials = JSON.parse(localStorage.getItem("User"));
+        if(Credentials){
         console.log("Working");
         console.log(Credentials);
         $("#Account").text(Credentials.name);
@@ -34,35 +36,35 @@ $(document).ready(function(){
             case 0:
                 dropdown.find("h2").text("User");
                 break;
-            case 1:
-                dropdown.find("h2").text("Collector");
-                break;
-            case 2:
-                dropdown.find("h2").text("Admin");
-                break;
-            
-            default:
-                break;
-        }
-    }
+                case 1:
+                    dropdown.find("h2").text("Collector");
+                    break;
+                    case 2:
+                        dropdown.find("h2").text("Admin");
+                        break;
+                        
+                        default:
+                            break;
+                        }
+                    }
 
-    // Dropdown for sign out
-    info.click(() => {
-        if(dropdown.css("display") == "flex")   
-            dropdown.css("display", "none");
-        else if(dropdown.css("display") == "none")   
-            dropdown.css("display", "flex");
-    });
-    dropdown.find('button').click(()=>{
-        localStorage.removeItem("RefundApp");
-        localStorage.removeItem("User");
-        window.location.href = "/src/Auth/Login.html";
-    })
-
+                    // Dropdown for sign out
+                    info.click(() => {
+                        if(dropdown.css("display") == "flex")   
+                            dropdown.css("display", "none");
+                        else if(dropdown.css("display") == "none")   
+                            dropdown.css("display", "flex");
+                    });
+                    dropdown.find('button').click(()=>{
+                        localStorage.removeItem("RefundApp");
+                        localStorage.removeItem("User");
+                        window.location.href = "/src/Auth/Login.html";
+                    })
+                    
     //#endregion Navbar
 
     // Api calls
-
+    
     const fetchAcceptedData = async() =>{
         try{
             let response = await fetch("http://localhost:5018/api/Order/GetAcceptedRefund",{
@@ -80,7 +82,7 @@ $(document).ready(function(){
             console.log(err);
         }
     }
-
+    
     const handlePaymentSubmission = async (orderId,refundId) =>{
         let notyf = new Notyf();
         try{
@@ -90,7 +92,7 @@ $(document).ready(function(){
                 adminId: memberId,
                 refundId: refundId,
                 transactionId: transactionId
-              }
+            }
             let response = await fetch("http://localhost:5018/api/Payment",{
                 method:"POST",
                 headers: {
@@ -117,13 +119,13 @@ $(document).ready(function(){
     //utilitis
     function generateGUID() {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-          var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
-          return v.toString(16);
+            var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
         });
-      }
+    }
     
     $("#Transaction").val(generateGUID());
-
+    
     //#endregion
     
     const createComponents = (elements) =>{
@@ -139,12 +141,12 @@ $(document).ready(function(){
             cloneDiv.appendTo(parentDiv);
         })
     }
-
-
-
-
+    
+    
+    
+    
     //#region Pophandlers
-
+    
     const handlePaymentPop = (orderId,refundId) =>{
         let pop = document.getElementById('PaymentPop');
         pop.style.display = "flex";
@@ -152,15 +154,15 @@ $(document).ready(function(){
         pop.querySelector('#cancel').addEventListener('click',()=>handleHidePop());
         pop.querySelector('#submission').addEventListener('click',()=>handlePaymentSubmission(orderId,refundId))
     }
-
+    
     const handleHidePop = () =>{
         let pop = document.getElementById('PaymentPop');
         pop.querySelector('input').textContent = "";
         pop.style.display = "none";
     }
-
+    
     //#endregion
-
+    
     fetchAcceptedData();
 })
-
+}, 500);

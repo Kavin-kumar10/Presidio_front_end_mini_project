@@ -84,7 +84,12 @@ const handleReasonSubmit = async () =>{
         console.log(result);
         if(response.status != 200){
             notyf.error(result.errorMessage);
+        }else{
+            notyf.success("Refund Requested, Please wait for Collector to collect the product.")
         }
+        setTimeout(()=>{
+            window.location.reload();
+        },1500)
         handleHidePop();
     }
     catch(err){
