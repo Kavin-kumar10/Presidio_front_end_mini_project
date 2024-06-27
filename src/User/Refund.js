@@ -41,7 +41,8 @@ $(document).ready(function(){
                             let result = await response.json();
                             console.log(result);
                             let dateObject = new Date(result.paymentDate);
-                            dateObject = dateObject.toDateString();                            $('#transaction_id').text(`Transaction Id : ${result.transactionId}`)
+                            dateObject = dateObject.toDateString();                            
+                            $('#transaction_id').text(`Transaction Id : ${result.transactionId}`)
                             $('#transaction_amount').text(`Amount : $${result.totalPayment}`)
                             $('#transaction_date').text(`Date : ${dateObject}`)
                             $('#transaction_type').text(`Type : ${result.type}`)

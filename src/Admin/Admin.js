@@ -3,7 +3,21 @@ $(document).ready(function(){
     let parentDiv = $("#parent")
     let storage = JSON.parse(localStorage.getItem('RefundApp'));
     let memberId = storage.memberID;
+    var elements;
     
+    //Search bar
+    let searchInput = $('#SearchOrder');
+    searchInput.keyup(function() {
+        const searchTerm = $(this).val().toLowerCase();
+        console.log(searchTerm);
+        var filtered = elements.filter((elem) => {
+            return elem.orderId.toString().includes(searchTerm);
+        });
+        console.log(filtered);
+        createComponents(filtered);
+    });
+
+
     //#region Navbar controller
 
     let dropdown = $('#dropdown');
@@ -58,9 +72,9 @@ $(document).ready(function(){
                     "Authorization": `Bearer ${storage.token}`
                 }
             })
-            let result = await response.json();
-            console.log(result);
-            createComponents(result);
+            elements = await response.json();
+            console.log(elements);
+            createComponents(elements);
         }   
         catch(err){
             console.log(err);
@@ -113,11 +127,13 @@ $(document).ready(function(){
     //#endregion
     
     const createComponents = (elements) =>{
+        parentDiv.empty();
         $.each(elements,(index,elem)=>{
             var cloneDiv = templateDiv.clone();
             cloneDiv.find('h1').text(elem.product.title)
             cloneDiv.find('h2').text(`Collect from ${elem.orderedBy.name}`)
             cloneDiv.find('p').text(`Product Price $${elem.refund.refundAmount}`)
+            cloneDiv.find('h3').text(`Order Id : ${elem.orderId}`);
             cloneDiv.find('span').text(elem.orderId);
             cloneDiv.find("#Btn").click(()=>handlePaymentPop(elem.orderId,elem.refundId))
             cloneDiv.appendTo(parentDiv);

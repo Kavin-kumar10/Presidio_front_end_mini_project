@@ -6,16 +6,21 @@
     <title>Activate</title>
     <link rel="stylesheet" href="../output.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="icon" type="image/x-icon" href="../Assets/Logo.png">
+
     <!-- Alert notfy -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+
+    <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- libraries -->
     <script src="./Admin.js"></script>
     <script src="./Activate.js"></script>
+
 </head>
 <body class="p-4 sm:p-6 md:p-8 bg-primary">
-
-
-    <div id="ActivatePop" class="hidden rounded-md h-screen z-20 w-screen fixed bg-white bg-opacity-50 top-0 left-0 flex items-center justify-center">
+    <div id="ActivatePop" class="hidden rounded-md z-20 w-screen fixed bg-white bg-opacity-50 top-0 left-0 flex items-center justify-center">
         <div class="bg-white p-5 w-full m-1 sm:w-1/2 lg:w-1/3 rounded-md shadow-sm shadow-secondary">
             <h1 class="text-secondary text-xl md:text-3xl font-bold my-3">Activate Account</h1>
             <p class="mb-3 text-lg text-secondary opacity-60">Member Id : 1</p>
@@ -61,8 +66,9 @@
             <a href="./Activate.html" class="text-secondary cursor-pointer opacity-70 hover:opacity-100 text-sm block md:hidden">
                 <i class="fa-solid fa-address-book"></i>
             </a>
-            <!-- Profile -->
 
+            <!-- Profile -->
+             
             <div class="relative cursor-pointer">
                 <li id="Account" class="info text-primary border-2  bg-secondary rounded-md border-secondary px-4 py-2 hover:opacity-70 opacity-100 text-lg hidden md:block">
                     Kavin Kumar M
@@ -84,6 +90,7 @@
 
     <section>
         <h1 class="text-secondary text-xl md:text-3xl mb-5">Activation</h1>
+        <input class="my-5 px-3 py-2 outline-none border-2 border-secondary rounded-md" placeholder="Search User" id="activateSearch" type="text">
         <div id="Member_Parent" class="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             <div id="Member_Template" class="p-3 w-full bg-primary shadow-md shadow-secondary rounded-md">
                 <h1 class="text-secondary font-bold text-2xl">Kavin Kumar M</h1>

@@ -1,16 +1,41 @@
+// Variable Declaration
+// Create Components
+// PopHandling
+// Activate function
+// Deactivate function
+// FetchUserData - request
+
+
 $(document).ready(function(){
     
     let storage = JSON.parse(localStorage.getItem('RefundApp'));
     let template = $('#Member_Template');
     let parent = $('#Member_Parent')
     var notyf = new Notyf();
+    var elements;
     
-    
+    //Search bar
+    let searchInput = $('#activateSearch');
+    searchInput.keyup(function() {
+        const searchTerm = $(this).val().toLowerCase();
+        console.log(searchTerm);
+        var filtered = elements.filter((elem) => {
+            const memberLower = elem.member.name?.toLowerCase(); 
+            return memberLower?.includes(searchTerm) || elem.member.id.toString().includes(searchTerm);
+        });
+        console.log(filtered);
+        createComponents(filtered);
+    });
+
+
     $('#cancel').click(()=>{
         $('#ActivatePop').css('display','none');
     })
     
+    //CreateComponents
+
     const createComponents = (elements) =>{
+        parent.empty();
         $.each(elements,(index,elem)=>{
             let cloneDiv = template.clone();
             cloneDiv.find('h1').text(elem.member.name);
@@ -46,6 +71,8 @@ $(document).ready(function(){
         })
     }
 
+    // Pophandling
+
     const activatePop = (elem) =>{
         let pop = $('#ActivatePop');
         pop.css('display','flex');
@@ -61,6 +88,8 @@ $(document).ready(function(){
             activate(data);
         })
     }
+
+    //Activate function
 
     const activate = async (data) =>{
         try{
@@ -84,6 +113,8 @@ $(document).ready(function(){
         }
     }
 
+    //Deactivate Function
+
     const deactivate = async (memberId) =>{
         try{
             let response = await fetch(`http://localhost:5018/api/Activate/Deactivate?MemberId=${memberId}`,{
@@ -105,6 +136,8 @@ $(document).ready(function(){
         }
     }
 
+    // FetchUserData
+
     const fetchUserData = async() =>{
         try{
             let response = await fetch("http://localhost:5018/api/User",{
@@ -114,9 +147,9 @@ $(document).ready(function(){
                     "Authorization": `Bearer ${storage.token}`
                 }
             })
-            let result = await response.json();
-            console.log(result);
-            createComponents(result);
+            elements = await response.json();
+            console.log(elements);
+            createComponents(elements);
         }   
         catch(err){
             console.log(err);
