@@ -27,6 +27,8 @@ $(document).ready(function(){
         $.each(elements,(index,elem)=>{
             console.log(elem);
             var cloneDiv = productTemplate.clone();
+            if(elem.productId == 101)
+                cloneDiv.find('img').attr("src", "../Assets/product1.jpg");
             cloneDiv.find('h1').text(elem.title);
             cloneDiv.find('p').text(elem.description);
             cloneDiv.find('b').text(elem.curr_price);

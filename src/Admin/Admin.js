@@ -132,6 +132,8 @@ setTimeout(() => {
         parentDiv.empty();
         $.each(elements,(index,elem)=>{
             var cloneDiv = templateDiv.clone();
+            if(elem.productId == 101)
+                cloneDiv.find('img').attr("src", "../Assets/product1.jpg");
             cloneDiv.find('h1').text(elem.product.title)
             cloneDiv.find('h2').text(`Collect from ${elem.orderedBy.name}`)
             cloneDiv.find('p').text(`Product Price $${elem.refund.refundAmount}`)
@@ -165,4 +167,4 @@ setTimeout(() => {
     
     fetchAcceptedData();
 })
-}, 500);
+});

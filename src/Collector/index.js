@@ -1,15 +1,17 @@
-let template = $('#Pendings_template');
-let parent = $('#Pendings_parent')
+const retrievedDataString = localStorage.getItem("RefundApp");
+const retrievedDataObject = JSON.parse(retrievedDataString);
+var elements;
 
 setTimeout(() => {
+    let template = $('#Pendings_template');
+    let parent = $('#Pendings_parent')
     
     $(document).ready(async function(){
         
-        var elements;
         
         //Search bar
-        let searchInput = $('#SearchOrder');
-        searchInput.keyup(function() {
+    let searchInput = $('#SearchOrder');
+    searchInput.keyup(function() {
             const searchTerm = $(this).val().toLowerCase();
             console.log(searchTerm);
             var filtered = elements.filter((elem) => {
@@ -22,8 +24,6 @@ setTimeout(() => {
     try{
         var notyf = new Notyf(); 
         NavbarControl();
-        const retrievedDataString = localStorage.getItem("RefundApp");
-        const retrievedDataObject = JSON.parse(retrievedDataString);
         let response = await fetch("http://localhost:5018/api/Order/GetPendingRefund",{
             method:"GET",
             headers: {
@@ -45,9 +45,12 @@ setTimeout(() => {
 
 
 const createComponents = (elements) =>{
+    var notyf = new Notyf(); 
     parent.empty();
     $.each(elements, function (index, elem) { 
         let cloneDiv = template.clone();
+        if(elem.productId == 101)
+            cloneDiv.find('img').attr("src", "../Assets/product1.jpg");
         cloneDiv.find('h1').text(elem.product.title)
         cloneDiv.find('h2').text(`Collect from ${elem.orderedBy.name}`)
         cloneDiv.find('p').text(`Product Price $${elem.refund.refundAmount}`)
@@ -101,29 +104,29 @@ const createComponents = (elements) =>{
             case 0:
                 dropdown.find("h2").text("User");
                 break;
-                case 1:
-                    dropdown.find("h2").text("Collector");
-                    break;
-                    case 2:
-                        dropdown.find("h2").text("Admin");
-                        break;
-                        
-                        default:
-                            break;
-                        }
-                    }
-                    
-                    // Dropdown for sign out
-                    info.click(() => {
-                        if(dropdown.css("display") == "flex")   
-                            dropdown.css("display", "none");
-                        else if(dropdown.css("display") == "none")   
-                            dropdown.css("display", "flex");
-                    });
-                    dropdown.find('button').click(()=>{
-                        localStorage.removeItem("RefundApp");
-                        localStorage.removeItem("User");
-                        window.location.href = "/src/Auth/Login.html";
-                    })
-                }
-}, 1000);
+            case 1:
+                dropdown.find("h2").text("Collector");
+                break;
+            case 2:
+                dropdown.find("h2").text("Admin");
+                break;
+                
+            default:
+                break;
+            }
+        }
+        
+        // Dropdown for sign out
+        info.click(() => {
+            if(dropdown.css("display") == "flex")   
+                dropdown.css("display", "none");
+            else if(dropdown.css("display") == "none")   
+                dropdown.css("display", "flex");
+        });
+        dropdown.find('button').click(()=>{
+            localStorage.removeItem("RefundApp");
+            localStorage.removeItem("User");
+            window.location.href = "/src/Auth/Login.html";
+        })
+    }
+});

@@ -9,6 +9,8 @@ $(document).ready(function(){
             let cloneDiv = template.clone();
             let dateObject = new Date(elem.createdDate);
             dateObject = dateObject.toDateString();
+            if(elem.productId == 101)
+                cloneDiv.find('img').attr("src", "../Assets/product1.jpg");
             cloneDiv.find('h1').text(elem.product.title);
             cloneDiv.find('h2').text(`Created at : ${dateObject}`)
             cloneDiv.find('h3').text(`Reason : ${elem.refund.reason}`)

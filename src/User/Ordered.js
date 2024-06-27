@@ -11,6 +11,8 @@ $(document).ready(function(){
             var cloneDiv = templateDiv.clone();
             let dateObject = new Date(elem.createdDate);
             dateObject = dateObject.toDateString();
+            if(elem.productId == 101)
+                cloneDiv.find('img').attr("src", "../Assets/product1.jpg");
             cloneDiv.find('h1').text(elem.product.title);
             cloneDiv.find('p').html(`Returnable upto ${elem.product.returnable} Days <span class="text-green-900 font-bold">(${elem.product.returnableForPrime} days exclusive for prime)</span> from ${dateObject} - Purchase Date`);
             if(elem.refundId){
