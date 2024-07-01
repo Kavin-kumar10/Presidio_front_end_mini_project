@@ -9,6 +9,7 @@ $(document).ready(function(){
     const createComponents = (elements) =>{
         $.each(elements,(index,elem)=>{
             var cloneDiv = templateDiv.clone();
+            cloneDiv.css('display','flex')
             let dateObject = new Date(elem.createdDate);
             dateObject = dateObject.toDateString();
             if(elem.productId == 101)
@@ -91,7 +92,7 @@ const handleReasonSubmit = async () =>{
         }
         setTimeout(()=>{
             window.location.reload();
-        },1500)
+        },3000)
         handleHidePop();
     }
     catch(err){

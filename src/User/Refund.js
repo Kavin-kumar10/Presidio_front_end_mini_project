@@ -11,6 +11,7 @@ $(document).ready(function(){
             dateObject = dateObject.toDateString();
             if(elem.productId == 101)
                 cloneDiv.find('img').attr("src", "../Assets/product1.jpg");
+            cloneDiv.css('display','flex')
             cloneDiv.find('h1').text(elem.product.title);
             cloneDiv.find('h2').text(`Created at : ${dateObject}`)
             cloneDiv.find('h3').text(`Reason : ${elem.refund.reason}`)

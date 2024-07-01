@@ -10,7 +10,7 @@ $(document).ready(function(){
             console.log(data);
             let info = $('#productinfo');
             info.find('#productId').text(data.productId?data.productId:"None");
-            if(elem.productId == 101)
+            if(data.productId == 101)
                 info.find('img').attr("src", "../Assets/product1.jpg");
             info.find('h1').text(data.title);
             info.find('b').text(data.curr_price);

@@ -136,6 +136,7 @@ setTimeout(() => {
                 cloneDiv.find('img').attr("src", "../Assets/product1.jpg");
             cloneDiv.find('h1').text(elem.product.title)
             cloneDiv.find('h2').text(`Collect from ${elem.orderedBy.name}`)
+            cloneDiv.css('display','block')
             cloneDiv.find('p').text(`Product Price $${elem.refund.refundAmount}`)
             cloneDiv.find('h3').text(`Order Id : ${elem.orderId}`);
             cloneDiv.find('span').text(elem.orderId);

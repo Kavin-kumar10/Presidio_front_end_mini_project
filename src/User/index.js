@@ -29,6 +29,7 @@ $(document).ready(function(){
             var cloneDiv = productTemplate.clone();
             if(elem.productId == 101)
                 cloneDiv.find('img').attr("src", "../Assets/product1.jpg");
+            cloneDiv.css('display','flex');
             cloneDiv.find('h1').text(elem.title);
             cloneDiv.find('p').text(elem.description);
             cloneDiv.find('b').text(elem.curr_price);
